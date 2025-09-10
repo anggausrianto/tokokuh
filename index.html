@@ -1,0 +1,32 @@
+
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="theme-color" content="#111827"/>
+  <title>tokokuh (PWA)</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192x192.png" sizes="192x192">
+  <style>
+    html,body{height:100%;margin:0;background:#0b1320}
+    iframe{border:0;width:100%;height:100%;display:block}
+    .nosw{position:fixed;left:0;right:0;bottom:0;padding:8px 12px;background:#222;color:#ddd;
+          font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;font-size:14px}
+  </style>
+</head>
+<body>
+  <iframe src="app.html" allow="camera *; clipboard-read; clipboard-write; fullscreen"></iframe>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(console.warn);
+      });
+    } else {
+      const n=document.createElement('div'); n.className='nosw';
+      n.textContent='Browser ini tidak mendukung Service Worker (PWA).';
+      document.body.appendChild(n);
+    }
+  </script>
+</body>
+</html>
